@@ -2,6 +2,7 @@ import bs4 as bs
 import urllib.request
 import pandas as pd
 import streamlit as st
+import matplotlib.pyplot as plt
 from utility_functions import filedownload
 
 
@@ -28,9 +29,14 @@ def app():
     st.header('Display Points by Driver for the selected year')
     st.write('Data Dimension: ' + str(df_driver_points_by_year.shape[0]) + ' rows and ' + str(df_driver_points_by_year.shape[1]) + ' columns.')
     st.dataframe(df_driver_points_by_year)
-    
+
+    fig, ax = plt.subplots()
+    ax.bar(df_driver_points_by_year['Driver'], df_driver_points_by_year['Points'])
+    plt.xticks(rotation=90)
+    st.pyplot(fig)
+
     st.markdown(filedownload(df_driver_points_by_year), unsafe_allow_html=True)
-    
+
     def fastest_lap_by_year(year):
         '''
             Get a list of the fastest laps for each Grand Prix.
