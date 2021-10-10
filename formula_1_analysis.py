@@ -1,9 +1,7 @@
 import bs4 as bs
 import urllib.request
 import pandas as pd
-import numpy as np
 import streamlit as st
-from functools import wraps
 from utility_functions import filedownload
 
 st.title('Formula One Stats Explorer')
@@ -58,6 +56,8 @@ st.write('Data Dimension: ' + str(df_fastest_lap_by_year.shape[0]) + ' rows and 
 st.dataframe(df_fastest_lap_by_year)
 
 st.markdown(filedownload(df_fastest_lap_by_year), unsafe_allow_html=True)
+
+
 
 
 
